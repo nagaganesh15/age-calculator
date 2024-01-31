@@ -1,0 +1,202 @@
+<html>
+    <head>
+        <title>age calculator</title>
+        <style>
+            body {
+             background-image: url('age.png');
+            }
+            #box{
+                padding-top:30px;
+                width:400px;
+                height:320px;
+                background-color:yellow;
+                top:50%;
+                left:50%;
+                position:absolute;
+                transform:translate(-50%,-50%);
+                box-sizing:border-box;
+                border-radius:10px;
+                text-align:center;
+                line-height:20px;
+            }
+            p{
+                font-size:20px;
+                color:black;
+            }
+            label{
+                font-size:18px;    
+            }
+            #b{
+                cursor: pointer;
+                font-size:18px;   
+                background-color:cyan;
+            }
+            #dob{
+                font-size:16px;    
+            }
+            #tdate{
+                font-size:16px;    
+            }
+            #th{
+                padding-top: 700px;
+            }
+        </style>
+    </head>
+    <body >
+        <div id="box">
+            <center>
+                <label>Date Of Birth:</label>
+                <input type="date" id="dob">
+                <br>
+                <br>
+                <label>Today Date:</label>
+                <input type="date" id="tdate">
+                <br>
+                <br>
+                <input type="button" value="Age" id="b" onclick="age()">
+                <br>
+                <br>
+                <p id="ca"></p>
+                <p id="after"></p>
+            </center>
+        </div>
+        <center>
+            <p id="th">Thanks for visiting | Designed by Ganesh</p>
+        </center>
+            <script>
+                
+                function age()
+                {
+                    var a,b,c,d,e,da,mo,ye,cm=0,cd=0;
+                    a=document.getElementById('tdate').value;
+                    b=document.getElementById('dob').value;
+                    if(a==""||b=="")
+                    {
+                        document.getElementById('ca').innerHTML="Give date of birth and date";
+                        return;
+                    }
+                    c=a[8]+a[9];
+                    d=b[8]+b[9];
+                    let q=parseInt(c);
+                    let w=parseInt(d);
+                    da=Math.abs(q-w);
+                    let q1=parseInt(a[5]+a[6]);
+                    let w1=parseInt(b[5]+b[6]);
+                    let i=q1;
+                    while(i!=w1)
+                    {
+                        if(i==12)
+                        {
+                            i=0;
+                        }
+                        i++;
+                        cm++;
+                    }
+                    let j=q;
+                    while(j!=w)
+                    {
+                        if(q1==1||q1==3||q1==5||q1==7||q1==8||q1==10||q1==12)
+                        {
+                            if(j==31)
+                            {
+                                j=0;
+                            }
+                        }
+                        else if(q1==2)
+                        {
+                            if(j==28)
+                            {
+                                j=0;
+                            }
+                        }
+                        else
+                        {
+                            if(j==30)
+                            {
+                                j=0;
+                            }
+                        }
+                        j++;
+                        cd++;
+                    }
+                     mo=Math.abs(q1-w1);
+                    let q2=parseInt(a[0]+a[1]+a[2]+a[3]);
+                    let w2=parseInt(b[0]+b[1]+b[2]+b[3]);
+                    ye=Math.abs(q2-w2);
+                    if(q2==w2)
+                    {
+                        if(q1==w1)
+                        {
+                            if(q<w)
+                            {
+                                document.getElementById('ca').innerHTML="Give valid date of birth";
+                                return;
+                            }
+                        }
+                        else if(q1<w1){
+                            document.getElementById('ca').innerHTML="Give valid date of birth";
+                            return;
+                        }
+                    }
+                    else if(q2<w2)
+                    {
+                        document.getElementById('ca').innerHTML="Give valid date of birth";
+                        return;
+                    }
+                    if(q2==w2)
+                    {
+                        if(q1==w1)
+                        {
+                            document.getElementById('ca').innerHTML="your Age is <q>"+da+" days</q>";
+                            document.getElementById('after').innerHTML="After <q>"+cd+" days</q> your age will be <q>"+cm+1+" month</q> ";
+                        }
+                        else{
+                            if(mo==1)
+                            document.getElementById('ca').innerHTML="your Age is <q>"+mo+" month</q> ";
+                            else
+                            document.getElementById('ca').innerHTML="your Age is <q>"+mo+" months</q> ";
+                            if(cd==0)
+                            {
+                                if(cm==1)
+                                document.getElementById('after').innerHTML="After <q>"+cm+" month</q> your age will be <q>"+ye+1+" year</q>";
+                                else
+                                document.getElementById('after').innerHTML="After <q>"+cm+" months</q> your age will be <q>"+ye+1+" year</q>";
+                            }   
+                            else
+                            document.getElementById('after').innerHTML="After <q>"+cm+" months "+cd+" days</q> your age will be <q>"+ye+1+" year</q>";
+                        }
+                        
+                    }
+    
+                    else if(cm==0 && cd==0)
+                    {
+                        document.getElementById('ca').innerHTML="your Age is <q>"+ye+" years</q>";
+                    }
+                    else
+                    {
+                        let ye1=ye-1;
+                        document.getElementById('ca').innerHTML="your Age is <q>"+ye1+" years</q>";
+                        if(cm==0)
+                        document.getElementById('after').innerHTML="After <q>"+cd+" days</q> your age will be <q>"+ye+" years</q>";
+                        else if(cd==0)
+                        {
+                            if(cm==1)
+                            {
+                                document.getElementById('after').innerHTML="After <q>"+cm+" month</q> your age will be <q>"+ye+" years</q>";
+                            }
+                            else
+                            document.getElementById('after').innerHTML="After <q>"+cm+" months</q> your age will be <q>"+ye+" years</q>";
+                        }
+                        else
+                        {
+                            if(cm==1)
+                            document.getElementById('after').innerHTML="After <q>"+cm+" month "+cd+" days</q> your age will be <q>"+ye+" years</q>";
+                            else
+                            document.getElementById('after').innerHTML="After <q>"+cm+" months "+cd+" days</q> your age will be <q>"+ye+" years</q>";
+                        }
+                    }
+                }
+            </script>
+        
+    </body>
+</html>
